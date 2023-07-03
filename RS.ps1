@@ -12,5 +12,8 @@ $PowerShell = [powershell]::Create()
 $PowerShell.Runspace = $RunSpace
 $RunSpace.Open()
 $PowerShell.AddScript($ScriptBlock)
-$PowerShell.Invoke()
+$Job = $PowerShell.BeginInvoke()
+$Job
+$PowerShell.EndInvoke($Job)
 $PowerShell.Dispose()
+$RunSpace.Close()
